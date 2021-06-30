@@ -4,6 +4,7 @@
 
 // Getting the search form DOM elements
 var form = document.getElementById("form-container");
+var citySearch = document.getElementById("city-search");
 var searchButton = document.getElementById("search-button");
 var recentSearches = document.getElementById("button-container");
 
@@ -50,3 +51,53 @@ var fifthDayIcon = document.getElementById("fifth-day-icon");
 var fifthDayTemperature = document.getElementById("fifth-day-temperature");
 var fifthDayWind = document.getElementById("fifth-day-wind");
 var fifthDayHumidity = document.getElementById("fifth-day-humidity");
+
+var apiKey = "3b64e855db6f550ac62900aed67b9ff5";
+var currentLongitude = 0;
+var currentLatitude = 0;
+
+// Luxon date and time variables
+var DateTime = luxon.DateTime;
+var now = DateTime.now();
+
+function fetchWeatherData(city) {
+    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey)
+    .then(response => response.json())
+    .then(data => {
+        // Display the selected city's name
+        selectedCity.innerHTML = city;
+        
+        // Display the current date and time
+        currentDate.innerHTML = "Current Date and Time".bold() + ": "  + now.toLocaleString(DateTime.DATETIME_MED);
+
+        // Display the selected city's current temperature
+        currentTemperature.innerHTML = "Current Temperature in Degrees Celsius".bold()  + ": "  + (data.main.temp - 273.15);
+
+        // Display the selected city's current wind speed
+        currentWind.innerHTML = "Current Wind Speed in Metres Per Second".bold() + ": "  + data.wind.speed;
+
+        // Display the selected city's current humidity
+        currentHumidity.innerHTML = "Current Humidity %".bold()  + ": "  + data.main.humidity;
+
+        console.log(data);
+        currentLongitude = data.coord.lon;
+        currentLatitude = data.coord.lat;
+    });
+
+    fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + currentLatitude + "&lon=" + currentLongitude + "&exclude=hourly,daily&appid=" + apiKey)
+    .then(response => response.json())
+    .then(data => {
+        // Display current uv index
+        currentUVIndex.innerHTML = "Current UV Index".bold() + ": " + data.current.uvi;
+    });
+}
+
+form.addEventListener('submit', function(event) {
+    // Prevent default event behaviours
+    event.preventDefault();
+
+    // Retrieve search value
+    var searchValue = citySearch.value;
+
+    fetchWeatherData(searchValue);
+});
