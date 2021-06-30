@@ -1,0 +1,62 @@
+header {
+    padding: 20px;
+}
+
+h1 {
+    margin-top: 25px;
+    text-align: center;
+}
+
+#search-column {
+    margin-top: 25px;
+}
+
+#display-column {
+    margin-top: 25px;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+#form-container {
+    border-style: solid;
+    padding: 20px;
+}
+
+#button-container {
+    border-style: solid;
+    padding: 20px;
+}
+
+ul {
+    list-style-type: square;
+}
+
+#current-weather {
+    border-style: solid;
+    padding: 20px;
+}
+
+#five-day-forecast {
+    border-style: solid;
+    padding: 20px;
+}
+
+#first-day-forecast {
+    border-style: solid;
+}
+
+#second-day-forecast {
+    border-style: solid;
+}
+
+#third-day-forecast {
+    border-style: solid;
+}
+
+#forth-day-forecast {
+    border-style: solid;
+}
+
+#fifth-day-forecast {
+    border-style: solid;
+}

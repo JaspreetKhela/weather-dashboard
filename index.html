@@ -6,14 +6,116 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/style.css"/>
 </head>
 
 <body>
     <header>
-
+        <h1>Weather Dashboard</h1>
     </header>
+
+    <div class="container">
+        <div class="row">
+          <div id="search-column" class="col-lg-3 col-md-12">
+            <div id="form-container">
+                <h3>Search for a City</h3>
+                <form id="search-form">
+                    <label for="city-search">Weather in:</label><br>
+                    <input type="text" id="city-search" value="Toronto"><br>
+
+                    <br>
+                    
+                    <button type="submit" id="search-button">Search</button>
+
+                    <br>
+                </form>
+            </div>
+
+            <br>
+
+            <div id="button-container">
+                <h3>Recent Searches</h3>
+            </div>
+          </div>
+
+          <div id="display-column" class="col-lg-9 col-md-12">
+            <div id="current-weather" class="row">
+                <h3>Current Weather</h3>
+
+                <br></br>
+
+                <ul>
+                    <li><div id="city-and-date">[Insert the Selected City and Current Date]</div></li>
+                    <li><div id="current-temperature">[Insert the Selected City's Current Temperature]</div></li>
+                    <li><div id="current-wind">[Insert the Selected City's Current Wind]</div></li>
+                    <li><div id="current-humidity">[Insert the Selected City's Current Humidity]</div></li>
+                    <li><div id="current-uv-index">[Insert the Selected City's Current UV Index]</div></li>
+                </ul>
+            </div>
+
+            <br>
+
+            <div id="five-day-forecast" class="row">
+                <h3>5-Day Forecast</h3>
+
+                <br></br>
+
+                <div id="first-day-forecast" class="col-2">
+                    <ul>
+                        <h5 id="first-day-date">[Insert the First Day's Date]</h5>
+                        <div id="first-day-icon">[Insert the First Day's Icon]</div>
+                        <li><div id="first-day-temperature">[Insert the First Day's Temperature]</div></li>
+                        <li><div id="first-day-wind">[Insert the First Day's Wind]</div></li>
+                        <li><div id="first-day-humidity">[Insert the First Day's Humidity]</div></li>
+                    </ul>
+                </div>
+
+                <div id="second-day-forecast" class="col-2">
+                    <ul>
+                        <h5 id="second-day-date">[Insert the First Day's Date]</h5>
+                        <div id="second-day-icon">[Insert the First Day's Icon]</div>
+                        <li><div id="second-day-temperature">[Insert the First Day's Temperature]</div></li>
+                        <li><div id="second-day-wind">[Insert the First Day's Wind]</div></li>
+                        <li><div id="second-day-humidity">[Insert the First Day's Humidity]</div></li>
+                    </ul>
+                </div>
+
+                <div id="third-day-forecast" class="col-2">
+                    <ul>
+                        <h5 id="third-day-date">[Insert the First Day's Date]</h5>
+                        <div id="third-day-icon">[Insert the First Day's Icon]</div>
+                        <li><div id="third-day-temperature">[Insert the First Day's Temperature]</div></li>
+                        <li><div id="third-day-wind">[Insert the First Day's Wind]</div></li>
+                        <li><div id="third-day-humidity">[Insert the First Day's Humidity]</div></li>
+                    </ul>
+                </div>
+
+                <div id="forth-day-forecast" class="col-2">
+                    <ul>
+                        <h5 id="forth-day-date">[Insert the First Day's Date]</h5>
+                        <div id="forth-day-icon">[Insert the First Day's Icon]</div>
+                        <li><div id="forth-day-temperature">[Insert the First Day's Temperature]</div></li>
+                        <li><div id="forth-day-wind">[Insert the First Day's Wind]</div></li>
+                        <li><div id="forth-day-humidity">[Insert the First Day's Humidity]</div></li>
+                    </ul>
+                </div>
+
+                <div id="fifth-day-forecast" class="col-2">
+                    <ul>
+                        <h5 id="fifth-day-date">[Insert the First Day's Date]</h5>
+                        <div id="fifth-day-icon">[Insert the First Day's Icon]</div>
+                        <li><div id="fifth-day-temperature">[Insert the First Day's Temperature]</div></li>
+                        <li><div id="fifth-day-wind">[Insert the First Day's Wind]</div></li>
+                        <li><div id="fifth-day-humidity">[Insert the First Day's Humidity]</div></li>
+                    </ul>
+                </div>                
+            </div>
+          </div>
+        </div>
+      </div>
     
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
