@@ -1,5 +1,6 @@
 header {
     padding: 20px;
+    text-align: center;
 }
 
 h1 {
@@ -66,26 +67,36 @@ ul {
 #first-day-forecast {
     border-style: solid;
     margin-bottom: 10px;
+    padding-top: 15px;
+    background-color: darkcyan;
 }
 
 #second-day-forecast {
     border-style: solid;
     margin-bottom: 10px;
+    padding-top: 15px;
+    background-color: darkcyan;
 }
 
 #third-day-forecast {
     border-style: solid;
     margin-bottom: 10px;
+    padding-top: 15px;
+    background-color: darkcyan;
 }
 
 #forth-day-forecast {
     border-style: solid;
     margin-bottom: 10px;
+    padding-top: 15px;
+    background-color: darkcyan;
 }
 
 #fifth-day-forecast {
     border-style: solid;
     margin-bottom: 10px;
+    padding-top: 15px;
+    background-color: darkcyan;
 }
 
 #first-day-date {

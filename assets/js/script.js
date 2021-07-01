@@ -57,11 +57,24 @@ var apiKey = "3b64e855db6f550ac62900aed67b9ff5";
 var currentLongitude = 0;
 var currentLatitude = 0;
 
+
+var savedDataBlank = [{
+    currentWeatherAPI: {},
+    oneCallAPI: {},
+    forecastAPI: {}
+}];
+
 // Luxon date and time variables
 var DateTime = luxon.DateTime;
 var now = DateTime.now();
 
 function fetchWeatherData(city) {
+    var savedData = {
+        currentWeatherAPI: {},
+        oneCallAPI: {},
+        forecastAPI: {}
+    };
+
     fetch("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey)
     .then(response => response.json())
     .then(data => {
@@ -80,92 +93,200 @@ function fetchWeatherData(city) {
         // Display the selected city's current humidity
         currentHumidity.innerHTML = "Humidity %".bold()  + ": "  + data.main.humidity;
 
-        console.log(data);
+        savedData.currentWeatherAPI = data;
+
         currentLongitude = data.coord.lon;
         currentLatitude = data.coord.lat;
+
+        var data1 = data;
+        localStorage.setItem("weatherdata1", JSON.stringify(data1));
     });
 
     fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + currentLatitude + "&lon=" + currentLongitude + "&exclude=hourly,daily&appid=" + apiKey)
     .then(response => response.json())
     .then(data => {
-        console.log(data);
-        console.log("https://api.openweathermap.org/data/2.5/onecall?lat=" + currentLatitude + "&lon=" + currentLongitude + "&exclude=hourly,daily&appid=" + apiKey);
-
-
         // Display the current uv index
         currentUVIndex.innerHTML = "Current UV Index".bold() + ": " + data.current.uvi;
+
+        var data2 = data;
+        localStorage.setItem("weatherdata2", JSON.stringify(data2));
     });
 
     fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&appid=" + apiKey)
     .then(response => response.json())
     .then(data => {
-        console.log(data);
-
         // Display the current weather icon
         var iconValue = data.list[0].weather[0].icon;
         currentWeatherIcon.innerHTML = "<img src='http://openweathermap.org/img/wn/" + iconValue + "@2x.png' alt='Forecasted Weather Icon'></img>";
         
         // Display the first day's forecasted date
-        firstDayDate.innerHTML = "Date and Time".bold() + ": " + data.list[1].dt_txt;        
+        firstDayDate.innerHTML = "Date and Time".bold() + ": " + data.list[7].dt_txt + " AM";        
         // Display the first day's forecasted weather icon
-        var iconValue = data.list[1].weather[0].icon;
+        var iconValue = data.list[7].weather[0].icon;
         firstDayIcon.innerHTML = "<img src='http://openweathermap.org/img/wn/" + iconValue + "@2x.png' alt='Forecasted Weather Icon'></img>";
         // Display the first day's forecasted temperature
-        firstDayTemperature.innerHTML = "Temperature in Degrees Celsius".bold() + ": " + Math.round(data.list[1].main.temp - 273.15);
+        firstDayTemperature.innerHTML = "Temperature in Degrees Celsius".bold() + ": " + Math.round(data.list[7].main.temp - 273.15);
         // Display the first day's forecasted wind
-        firstDayWind.innerHTML = "Wind Speed in Metres Per Second".bold() + ": " + data.list[1].wind.speed;
+        firstDayWind.innerHTML = "Wind Speed in Metres Per Second".bold() + ": " + data.list[7].wind.speed;
         // Display the first day's forecasted humidity
-        firstDayHumidity.innerHTML = "Humidity %".bold() + ": " + data.list[1].main.humidity;
+        firstDayHumidity.innerHTML = "Humidity %".bold() + ": " + data.list[7].main.humidity;
 
         // Display the second day's forecasted date
-        secondDayDate.innerHTML = "Date and Time".bold() + ": " + data.list[9].dt_txt;
+        secondDayDate.innerHTML = "Date and Time".bold() + ": " + data.list[15].dt_txt + " AM";
         // Display the second day's forecasted weather icon
-        var iconValue = data.list[9].weather[0].icon;
+        var iconValue = data.list[15].weather[0].icon;
         secondDayIcon.innerHTML = "<img src='http://openweathermap.org/img/wn/" + iconValue + "@2x.png' alt='Forecasted Weather Icon'></img>";
         // Display the second day's forecasted temperature
-        secondDayTemperature.innerHTML = "Temperature in Degrees Celsius".bold() + ": " + Math.round(data.list[9].main.temp - 273.15);
+        secondDayTemperature.innerHTML = "Temperature in Degrees Celsius".bold() + ": " + Math.round(data.list[15].main.temp - 273.15);
         // Display the second day's forecasted wind
-        secondDayWind.innerHTML = "Wind Speed in Metres Per Second".bold() + ": " + data.list[9].wind.speed;
+        secondDayWind.innerHTML = "Wind Speed in Metres Per Second".bold() + ": " + data.list[15].wind.speed;
         // Display the second day's forecasted humidity
-        secondDayHumidity.innerHTML = "Humidity %".bold() + ": " + data.list[9].main.humidity;
+        secondDayHumidity.innerHTML = "Humidity %".bold() + ": " + data.list[15].main.humidity;
 
         // Display the third day's forecasted date
-        thirdDayDate.innerHTML = "Date and Time".bold() + ": " + data.list[17].dt_txt;
+        thirdDayDate.innerHTML = "Date and Time".bold() + ": " + data.list[23].dt_txt + " AM";
         // Display the third day's forecasted weather icon
-        var iconValue = data.list[17].weather[0].icon;
+        var iconValue = data.list[23].weather[0].icon;
         thirdDayIcon.innerHTML = "<img src='http://openweathermap.org/img/wn/" + iconValue + "@2x.png' alt='Forecasted Weather Icon'></img>";
         // Display the third day's forecasted temperature
-        thirdDayTemperature.innerHTML = "Temperature in Degrees Celsius".bold() + ": " + Math.round(data.list[17].main.temp - 273.15);
+        thirdDayTemperature.innerHTML = "Temperature in Degrees Celsius".bold() + ": " + Math.round(data.list[23].main.temp - 273.15);
         // Display the third day's forecasted wind
-        thirdDayWind.innerHTML = "Wind Speed in Metres Per Second".bold() + ": " + data.list[17].wind.speed;
+        thirdDayWind.innerHTML = "Wind Speed in Metres Per Second".bold() + ": " + data.list[23].wind.speed;
         // Display the third day's forecasted humidity
-        thirdDayHumidity.innerHTML = "Humidity %".bold() + ": " + data.list[17].main.humidity;
+        thirdDayHumidity.innerHTML = "Humidity %".bold() + ": " + data.list[23].main.humidity;
 
         // Display the forth day's forecasted date
-        forthDayDate.innerHTML = "Date and Time".bold() + ": " + data.list[25].dt_txt;
+        forthDayDate.innerHTML = "Date and Time".bold() + ": " + data.list[31].dt_txt + " AM";
         // Display the forth day's forecasted weather icon
-        var iconValue = data.list[25].weather[0].icon;
+        var iconValue = data.list[31].weather[0].icon;
         forthDayIcon.innerHTML = "<img src='http://openweathermap.org/img/wn/" + iconValue + "@2x.png' alt='Forecasted Weather Icon'></img>";
         // Display the forth day's forecasted temperature
-        forthDayTemperature.innerHTML = "Temperature in Degrees Celsius".bold() + ": " + Math.round(data.list[25].main.temp - 273.15);
+        forthDayTemperature.innerHTML = "Temperature in Degrees Celsius".bold() + ": " + Math.round(data.list[31].main.temp - 273.15);
         // Display the forth day's forecasted wind
-        forthDayWind.innerHTML = "Wind Speed in Metres Per Second".bold() + ": " + data.list[25].wind.speed;
+        forthDayWind.innerHTML = "Wind Speed in Metres Per Second".bold() + ": " + data.list[31].wind.speed;
         // Display the forth day's forecasted humidity
-        forthDayHumidity.innerHTML = "Humidity %".bold() + ": " + data.list[25].main.humidity;
+        forthDayHumidity.innerHTML = "Humidity %".bold() + ": " + data.list[31].main.humidity;
 
         // Display the fifth day's forecasted date
-        fifthDayDate.innerHTML = "Date and Time".bold() + ": " + data.list[33].dt_txt;
+        fifthDayDate.innerHTML = "Date and Time".bold() + ": " + data.list[39].dt_txt + " AM";
         // Display the fifth day's forecasted weather icon
-        var iconValue = data.list[33].weather[0].icon;
+        var iconValue = data.list[39].weather[0].icon;
         fifthDayIcon.innerHTML = "<img src='http://openweathermap.org/img/wn/" + iconValue + "@2x.png' alt='Forecasted Weather Icon'></img>";
         // Display the fifth day's forecasted temperature
-        fifthDayTemperature.innerHTML = "Temperature in Degrees Celsius".bold() + ": " + Math.round(data.list[33].main.temp - 273.15);
+        fifthDayTemperature.innerHTML = "Temperature in Degrees Celsius".bold() + ": " + Math.round(data.list[39].main.temp - 273.15);
         // Display the fifth day's forecasted wind
-        fifthDayWind.innerHTML = "Wind Speed in Metres Per Second".bold() + ": " + data.list[33].wind.speed;
+        fifthDayWind.innerHTML = "Wind Speed in Metres Per Second".bold() + ": " + data.list[39].wind.speed;
         // Display the fifth day's forecasted humidity
-        fifthDayHumidity.innerHTML = "Humidity %".bold() + ": " + data.list[33].main.humidity;        
+        fifthDayHumidity.innerHTML = "Humidity %".bold() + ": " + data.list[39].main.humidity;
+
+        var data3 = data;
+        localStorage.setItem("weatherdata3", JSON.stringify(data3));
     })
 }
+
+// Load most recently searched city's weather data
+function load() {
+    // Retrieve saved weather data from localStorage is any exists
+    var data1 = JSON.parse(localStorage.getItem("weatherdata1")) || {};
+    var data2 = JSON.parse(localStorage.getItem("weatherdata2")) || {};
+    var data3 = JSON.parse(localStorage.getItem("weatherdata3")) || {};
+    
+    // If there is existing weather data in localStorage, then display it
+    if (JSON.parse(localStorage.getItem("weatherdata1"))) {
+        // Display the selected city's name
+        selectedCity.innerHTML = data1.name;
+            
+        // Display the current date and time
+        currentDate.innerHTML = "Date and Time".bold() + ": "  + now.toLocaleString(DateTime.DATETIME_MED);
+
+        // Display the selected city's current temperature
+        currentTemperature.innerHTML = "Temperature in Degrees Celsius".bold()  + ": "  + Math.round(data1.main.temp - 273.15);
+
+        // Display the selected city's current wind speed
+        currentWind.innerHTML = "Wind Speed in Metres Per Second".bold() + ": "  + data1.wind.speed;
+
+        // Display the selected city's current humidity
+        currentHumidity.innerHTML = "Humidity %".bold()  + ": "  + data1.main.humidity;
+
+        currentLongitude = data1.coord.lon;
+        currentLatitude = data1.coord.lat;
+
+        // Display the current uv index
+        currentUVIndex.innerHTML = "Current UV Index".bold() + ": " + data2.current.uvi;
+
+        // Display the current weather icon
+        var iconValue = data3.list[0].weather[0].icon;
+        currentWeatherIcon.innerHTML = "<img src='http://openweathermap.org/img/wn/" + iconValue + "@2x.png' alt='Forecasted Weather Icon'></img>";
+        
+        // Display the first day's forecasted date
+        firstDayDate.innerHTML = "Date and Time".bold() + ": " + data3.list[7].dt_txt + " AM";        
+        // Display the first day's forecasted weather icon
+        var iconValue = data3.list[7].weather[0].icon;
+        firstDayIcon.innerHTML = "<img src='http://openweathermap.org/img/wn/" + iconValue + "@2x.png' alt='Forecasted Weather Icon'></img>";
+        // Display the first day's forecasted temperature
+        firstDayTemperature.innerHTML = "Temperature in Degrees Celsius".bold() + ": " + Math.round(data3.list[7].main.temp - 273.15);
+        // Display the first day's forecasted wind
+        firstDayWind.innerHTML = "Wind Speed in Metres Per Second".bold() + ": " + data3.list[7].wind.speed;
+        // Display the first day's forecasted humidity
+        firstDayHumidity.innerHTML = "Humidity %".bold() + ": " + data3.list[7].main.humidity;
+
+        // Display the second day's forecasted date
+        secondDayDate.innerHTML = "Date and Time".bold() + ": " + data3.list[15].dt_txt + " AM";
+        // Display the second day's forecasted weather icon
+        var iconValue = data3.list[15].weather[0].icon;
+        secondDayIcon.innerHTML = "<img src='http://openweathermap.org/img/wn/" + iconValue + "@2x.png' alt='Forecasted Weather Icon'></img>";
+        // Display the second day's forecasted temperature
+        secondDayTemperature.innerHTML = "Temperature in Degrees Celsius".bold() + ": " + Math.round(data3.list[15].main.temp - 273.15);
+        // Display the second day's forecasted wind
+        secondDayWind.innerHTML = "Wind Speed in Metres Per Second".bold() + ": " + data3.list[15].wind.speed;
+        // Display the second day's forecasted humidity
+        secondDayHumidity.innerHTML = "Humidity %".bold() + ": " + data3.list[15].main.humidity;
+
+        // Display the third day's forecasted date
+        thirdDayDate.innerHTML = "Date and Time".bold() + ": " + data3.list[23].dt_txt + " AM";
+        // Display the third day's forecasted weather icon
+        var iconValue = data3.list[23].weather[0].icon;
+        thirdDayIcon.innerHTML = "<img src='http://openweathermap.org/img/wn/" + iconValue + "@2x.png' alt='Forecasted Weather Icon'></img>";
+        // Display the third day's forecasted temperature
+        thirdDayTemperature.innerHTML = "Temperature in Degrees Celsius".bold() + ": " + Math.round(data3.list[23].main.temp - 273.15);
+        // Display the third day's forecasted wind
+        thirdDayWind.innerHTML = "Wind Speed in Metres Per Second".bold() + ": " + data3.list[23].wind.speed;
+        // Display the third day's forecasted humidity
+        thirdDayHumidity.innerHTML = "Humidity %".bold() + ": " + data3.list[23].main.humidity;
+
+        // Display the forth day's forecasted date
+        forthDayDate.innerHTML = "Date and Time".bold() + ": " + data3.list[31].dt_txt + " AM";
+        // Display the forth day's forecasted weather icon
+        var iconValue = data3.list[31].weather[0].icon;
+        forthDayIcon.innerHTML = "<img src='http://openweathermap.org/img/wn/" + iconValue + "@2x.png' alt='Forecasted Weather Icon'></img>";
+        // Display the forth day's forecasted temperature
+        forthDayTemperature.innerHTML = "Temperature in Degrees Celsius".bold() + ": " + Math.round(data3.list[31].main.temp - 273.15);
+        // Display the forth day's forecasted wind
+        forthDayWind.innerHTML = "Wind Speed in Metres Per Second".bold() + ": " + data3.list[31].wind.speed;
+        // Display the forth day's forecasted humidity
+        forthDayHumidity.innerHTML = "Humidity %".bold() + ": " + data3.list[31].main.humidity;
+
+        // Display the fifth day's forecasted date
+        fifthDayDate.innerHTML = "Date and Time".bold() + ": " + data3.list[39].dt_txt + " AM";
+        // Display the fifth day's forecasted weather icon
+        var iconValue = data3.list[39].weather[0].icon;
+        fifthDayIcon.innerHTML = "<img src='http://openweathermap.org/img/wn/" + iconValue + "@2x.png' alt='Forecasted Weather Icon'></img>";
+        // Display the fifth day's forecasted temperature
+        fifthDayTemperature.innerHTML = "Temperature in Degrees Celsius".bold() + ": " + Math.round(data3.list[39].main.temp - 273.15);
+        // Display the fifth day's forecasted wind
+        fifthDayWind.innerHTML = "Wind Speed in Metres Per Second".bold() + ": " + data3.list[39].wind.speed;
+        // Display the fifth day's forecasted humidity
+        fifthDayHumidity.innerHTML = "Humidity %".bold() + ": " + data3.list[39].main.humidity;
+    }
+}
+
+// Add a button for a recently-search city
+function addCityButton(city) {
+    // recentSearches.innerHTML
+}
+
+// Load any existing weather data from localStorage if possible
+load();
 
 form.addEventListener('submit', function(event) {
     // Prevent default event behaviours
@@ -175,4 +296,6 @@ form.addEventListener('submit', function(event) {
     var searchValue = citySearch.value;
 
     fetchWeatherData(searchValue);
+
+    addCityButton(searchValue);
 });
