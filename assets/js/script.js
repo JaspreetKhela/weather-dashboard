@@ -57,16 +57,18 @@ var apiKey = "3b64e855db6f550ac62900aed67b9ff5";
 var currentLongitude = 0;
 var currentLatitude = 0;
 
-
-var savedDataBlank = [{
-    currentWeatherAPI: {},
-    oneCallAPI: {},
-    forecastAPI: {}
-}];
-
 // Luxon date and time variables
 var DateTime = luxon.DateTime;
 var now = DateTime.now();
+
+var buttonList = [];
+
+if (!(JSON.parse(localStorage.getItem("buttonlist")))) {
+    localStorage.setItem("buttonlist", JSON.stringify(buttonList));
+}
+else {
+    buttonList = JSON.parse(localStorage.getItem("buttonlist"));
+}
 
 function fetchWeatherData(city) {
     var savedData = {
@@ -278,11 +280,21 @@ function load() {
         // Display the fifth day's forecasted humidity
         fifthDayHumidity.innerHTML = "Humidity %".bold() + ": " + data3.list[39].main.humidity;
     }
+
+    for (var i = 0; (buttonList.length > 0) && (i < buttonList.length); i++) {
+        addCityButton(buttonList[i]);
+    }
 }
 
 // Add a button for a recently-search city
 function addCityButton(city) {
-    // recentSearches.innerHTML
+    var newButton = document.createElement("button");
+    newButton.type = "submit";
+    newButton.id = city;
+    newButton.value = city;
+    newButton.textContent = city;
+
+    recentSearches.appendChild(newButton);
 }
 
 // Load any existing weather data from localStorage if possible
@@ -297,5 +309,26 @@ form.addEventListener('submit', function(event) {
 
     fetchWeatherData(searchValue);
 
-    addCityButton(searchValue);
+    var j = 0;
+    
+    for (var i = 0; (buttonList.length > 0) && (i < buttonList.length); i++) {
+        if (buttonList[i] === searchValue) {
+            j++;
+        }
+    }
+
+    if (j === 0) {
+        buttonList.push(searchValue)
+        localStorage.setItem("buttonlist", JSON.stringify(buttonList));
+        addCityButton(searchValue);
+    }
+});
+
+recentSearches.addEventListener('click', function(event) {
+    // Prevent default event behaviours
+    event.preventDefault();
+
+    // Retrieve search value
+    var searchValue = event.target.value;
+    fetchWeatherData(searchValue);
 });
