@@ -7,6 +7,19 @@ h1 {
     text-align: center;
 }
 
+body {
+    background-color: darkcyan;
+    color: lightcyan;
+}
+
+.color {
+    background-color: darkslateblue;
+}
+
+h3 {
+    text-align: center;
+}
+
 #search-column {
     margin-top: 25px;
 }
@@ -36,27 +49,86 @@ ul {
     padding: 20px;
 }
 
+#current-weather-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
 #five-day-forecast {
     border-style: solid;
     padding: 20px;
+    display: flex;
+    justify-content: space-evenly;
+
 }
 
 #first-day-forecast {
     border-style: solid;
+    margin-bottom: 10px;
 }
 
 #second-day-forecast {
     border-style: solid;
+    margin-bottom: 10px;
 }
 
 #third-day-forecast {
     border-style: solid;
+    margin-bottom: 10px;
 }
 
 #forth-day-forecast {
     border-style: solid;
+    margin-bottom: 10px;
 }
 
 #fifth-day-forecast {
     border-style: solid;
+    margin-bottom: 10px;
+}
+
+#first-day-date {
+    text-align: center;
+}
+
+#first-day-icon {
+    display: flex;
+    justify-content: center;
+}
+
+#second-day-date {
+    text-align: center;
+}
+
+#second-day-icon {
+    display: flex;
+    justify-content: center;
+}
+
+#third-day-date {
+    text-align: center;
+}
+
+#third-day-icon {
+    display: flex;
+    justify-content: center;
+}
+
+#forth-day-date {
+    text-align: center;
+}
+
+#forth-day-icon {
+    display: flex;
+    justify-content: center;
+}
+
+#fifth-day-date {
+    text-align: center;
+}
+
+#fifth-day-icon {
+    display: flex;
+    justify-content: center;
 }
