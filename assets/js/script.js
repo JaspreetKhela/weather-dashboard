@@ -307,21 +307,31 @@ form.addEventListener('submit', function(event) {
     // Retrieve search value
     var searchValue = citySearch.value;
 
-    fetchWeatherData(searchValue);
-
-    var j = 0;
-    
-    for (var i = 0; (buttonList.length > 0) && (i < buttonList.length); i++) {
-        if (buttonList[i] === searchValue) {
-            j++;
+    fetch("https://api.openweathermap.org/data/2.5/weather?q=" + searchValue + "&appid=" + apiKey)
+    .then(response => response.json())
+    .then(data => {
+        console.log("Code: ", data.cod);
+        if (data.cod == 404) {
+            window.alert("'" + searchValue + "'" + " is not a valid city. Please try again.");
         }
-    }
+        else {
+            fetchWeatherData(searchValue);
 
-    if (j === 0) {
-        buttonList.push(searchValue)
-        localStorage.setItem("buttonlist", JSON.stringify(buttonList));
-        addCityButton(searchValue);
-    }
+            var j = 0;
+            
+            for (var i = 0; (buttonList.length > 0) && (i < buttonList.length); i++) {
+                if (buttonList[i] === searchValue) {
+                    j++;
+                }
+            }
+
+            if (j === 0) {
+                buttonList.push(searchValue)
+                localStorage.setItem("buttonlist", JSON.stringify(buttonList));
+                addCityButton(searchValue);
+            }
+            }
+        });
 });
 
 recentSearches.addEventListener('click', function(event) {
