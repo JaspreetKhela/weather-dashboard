@@ -1,4 +1,4 @@
-/*  */
+/* Header styling */
 header {
     padding: 20px;
     text-align: center;
@@ -6,84 +6,94 @@ header {
     border-bottom: solid;
 }
 
-/*  */
+/* Header's title styling */
 h1 {
     margin-top: 25px;
     text-align: center;
 }
 
-/*  */
+/* Body styling */
 body {
     background-color: darkcyan;
     color: white;
 }
 
-/*  */
+/* Background color styling */
 .color {
     background-color: darkslateblue;
 }
 
-/*  */
+/* Subheading styling */
 h3 {
     text-align: center;
+    display: block;
 }
 
-/*  */
+/* Search column styling */
 #search-column {
     margin-top: 25px;
 }
 
-/*  */
+/* Current and forecasted weather display column styling */
 #display-column {
     margin-top: 25px;
     padding-left: 24px;
     padding-right: 24px;
 }
 
-/*  */
+/* Form container styling */
 #form-container {
     border-style: solid;
     padding: 20px;
 }
 
-/*  */
+/* Form styling */
 #search-form {
     border-style: solid;
     background-color: darkcyan;
-    padding: 10px;
+    padding: 20px;
+    text-align: center;
 }
 
-/*  */
+/* #city-search {
+
+}
+
+#search-button {
+
+} */
+
+/* Recent searches styling */
 #button-container {
     border-style: solid;
     padding: 10px;
 }
 
-/*  */
+/* Button container styling */
 #buttons {
     border-style: solid;
     background-color: darkcyan;
-    /* display: flex;
-    justify-content: space-around; */
+    text-align: center;
+    padding: 20px;
 }
 
-/*  */
+/* Button styling */
 .btn {
     margin: 10px;
 }
 
-/*  */
+/* Unorderd list styling */
 ul {
     list-style-type: square;
 }
 
-/*  */
+/* Current weather container styling */
 #current-weather {
     border-style: solid;
     padding: 20px;
 }
 
-/*  */
+/* Current weather's icon container styling */
 #current-weather-icon {
     display: flex;
     justify-content: center;
@@ -94,7 +104,7 @@ ul {
     border-bottom: solid;
 }
 
-/*  */
+/* Current weather information styling */
 #current-weather-info {
     padding-top: 10px;
     background-color: darkcyan;
