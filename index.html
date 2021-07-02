@@ -1,3 +1,10 @@
+<!-- 
+Title: Weather Dashboard Application
+Create by: Jaspreet Khela
+Created on: June 29, 2021
+Description: Search for a city's current and forecasted weather 
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,125 +13,155 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Dashboard</title>
 
+    <!-- Linking Bootstrap's style sheet -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Linking the style sheet -->
     <link rel="stylesheet" href="./assets/css/style.css"/>
 </head>
 
 <body>
+    <!-- Title and description of the application -->
     <header>
         <h1>Weather Dashboard</h1>
         <h6>Search for a City's Current and Forecasted Weather Below!</h6>
     </header>
 
+    <!-- Container for the webpage's boxed content -->
     <div class="container">
         <div class="row">
-          <div id="search-column" class="col-lg-3 col-md-12">
-            <div id="form-container" class="color">
-                <h3>Search for a City</h3>
-                <form id="search-form">
-                    <label for="city-search">Weather in:</label><br>
-                    <input type="text" id="city-search" value="Toronto"><br>
 
-                    <br>
-                    
-                    <button type="submit" id="search-button">Search</button>
-
-                    <br>
-                </form>
-            </div>
-
-            <br>
-
-            <div id="button-container" class="color">
-                <h3>Recent Searches</h3>
-            </div>
-          </div>
-
-          <div id="display-column" class="col-lg-9 col-md-12">
-            <div id="current-weather" class="row color">
-                <h3>Current Weather</h3>
-
-                <br></br>
-
-                <div id="current-weather-icon" class="col-lg-6 col-md-12">
-                    [Current Weather Icon]
+            <!-- Container for the search column's form and button -->
+            <div id="search-column" class="col-lg-3 col-md-12">
+                <!-- City search form container -->
+                <div id="form-container" class="color rounded">
+                    <h3>Search for a City</h3>
+                    <form id="search-form" class="rounded">
+                        <label for="city-search">Weather in:</label><br>
+                        <input type="text" id="city-search" class="rounded" value="Toronto">
+                        <br>                    
+                        <button type="submit" id="search-button" class="btn btn btn-dark">Search</button>
+                        <br>
+                    </form>
                 </div>
 
-                <div id="current-weather-info" class="col-lg-6 col-md-12">
-                    <ul>
-                        <h4 id="current-city">[Selected City]</h4>
-                        <li><div id="current-date">[Current Date]</div></li>
-                        <li><div id="current-temperature">[Selected City's Current Temperature]</div></li>
-                        <li><div id="current-wind">[Selected City's Current Wind]</div></li>
-                        <li><div id="current-humidity">[Selected City's Current Humidity]</div></li>
-                        <li><div id="current-uv-index">[Selected City's Current UV Index]</div></li>
-                    </ul>
+                <br>
+
+                <!-- Button container for recent searches -->
+                <div id="button-container" class="color rounded">
+                    <h3>Recent Searches</h3>
+                    <div id="buttons" class="rounded"></div>
                 </div>
             </div>
 
-            <br>
+            <!-- Container for the current and forecasted weather information -->
+            <div id="display-column" class="col-lg-9 col-md-12">
+                <!-- Container for the current weather -->
+                <div id="current-weather" class="row color rounded">
+                    <h3>Current Weather</h3>
 
-            <div id="five-day-forecast" class="row color">
-                <h3>Five-Day Forecast</h3>
+                    <br></br>
 
-                <br></br>
+                    <!-- Container for the current weather's icon -->
+                    <div id="current-weather-icon" class="col-lg-6 col-md-12 rounded-left">
+                        [Current Weather Icon]
+                    </div>
 
-                <div id="first-day-forecast" class="col-lg-5 col-md-12">
-                    <ul>
-                        <h5 id="first-day-date">[First Day's Forecast Date]</h5>
-                        <div id="first-day-icon">[First Day's Forecast Icon]</div>
-                        <li><div id="first-day-temperature">[First Day's Forecast Temperature]</div></li>
-                        <li><div id="first-day-wind">[First Day's Forecast Wind]</div></li>
-                        <li><div id="first-day-humidity">[First Day's Forecast Humidity]</div></li>
-                    </ul>
+                    <!-- Container for the current weather information -->
+                    <div id="current-weather-info" class="col-lg-6 col-md-12 rounded-right">
+                        <ul>
+                            <h3 id="current-city">[Selected City]</h3>
+                            <li><div id="current-date">[Current Date]</div></li>
+                            <li><div id="current-temperature">[Selected City's Current Temperature]</div></li>
+                            <li><div id="current-wind">[Selected City's Current Wind]</div></li>
+                            <li><div id="current-humidity">[Selected City's Current Humidity]</div></li>
+                            <li><div id="current-uv-index">[Selected City's Current UV Index]</div></li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div id="second-day-forecast" class="col-lg-5 col-md-12">
-                    <ul>
-                        <h5 id="second-day-date">[Second Day's Forecast Date]</h5>
-                        <div id="second-day-icon">[Second Day's Forecast Icon]</div>
-                        <li><div id="second-day-temperature">[Second Day's Forecast Temperature]</div></li>
-                        <li><div id="second-day-wind">[Second Day's Forecast Wind]</div></li>
-                        <li><div id="second-day-humidity">[Second Day's Forecast Humidity]</div></li>
-                    </ul>
-                </div>
+                <br>
 
-                <div id="third-day-forecast" class="col-lg-5 col-md-12">
-                    <ul>
-                        <h5 id="third-day-date">[Third Day's Forecast Date]</h5>
-                        <div id="third-day-icon">[Third Day's Forecast Icon]</div>
-                        <li><div id="third-day-temperature">[Third Day's Forecast Temperature]</div></li>
-                        <li><div id="third-day-wind">[Third Day's Forecast Wind]</div></li>
-                        <li><div id="third-day-humidity">[Third Day's Forecast Humidity]</div></li>
-                    </ul>
-                </div>
+                <!-- Container for the forecasted weather -->
+                <div id="forecasted-weather" class="row color rounded">
+                    <h3>Forecasted Weather</h3>
 
-                <div id="forth-day-forecast" class="col-lg-5 col-md-12">
-                    <ul>
-                        <h5 id="forth-day-date">[Forth Day's Forecast Date]</h5>
-                        <div id="forth-day-icon">[Forth Day's Forecast Icon]</div>
-                        <li><div id="forth-day-temperature">[Forth Day's Forecast Temperature]</div></li>
-                        <li><div id="forth-day-wind">[Forth Day's Forecast Wind]</div></li>
-                        <li><div id="forth-day-humidity">[Forth Day's Forecast Humidity]</div></li>
-                    </ul>
-                </div>
+                    <br></br>
 
-                <div id="fifth-day-forecast" class="col-lg-5 col-md-12">
-                    <ul>
-                        <h5 id="fifth-day-date">[Fifth Day's Forecast Date]</h5>
-                        <div id="fifth-day-icon">[Fifth Day's Forecast Icon]</div>
-                        <li><div id="fifth-day-temperature">[Fifth Day's Forecast Temperature]</div></li>
-                        <li><div id="fifth-day-wind">[Fifth Day's Forecast Wind]</div></li>
-                        <li><div id="fifth-day-humidity">[Fifth Day's Forecast Humidity]</div></li>
-                    </ul>
-                </div>                
+                    <!-- Container for the first day's forecasted weather -->
+                    <div id="first-day-forecast" class="col-lg-5 col-md-12 rounded">
+                        <ul>
+                            <h5 id="first-day-date">[First Day's Forecast Date]</h5>
+                            <div id="first-day-icon">[First Day's Forecast Icon]</div>
+                            <li><div id="first-day-temperature">[First Day's Forecast Temperature]</div></li>
+                            <li><div id="first-day-wind">[First Day's Forecast Wind]</div></li>
+                            <li><div id="first-day-humidity">[First Day's Forecast Humidity]</div></li>
+                        </ul>
+                    </div>
+
+                    <!-- Container for the second day's forecasted weather -->
+                    <div id="second-day-forecast" class="col-lg-5 col-md-12 rounded">
+                        <ul>
+                            <h5 id="second-day-date">[Second Day's Forecast Date]</h5>
+                            <div id="second-day-icon">[Second Day's Forecast Icon]</div>
+                            <li><div id="second-day-temperature">[Second Day's Forecast Temperature]</div></li>
+                            <li><div id="second-day-wind">[Second Day's Forecast Wind]</div></li>
+                            <li><div id="second-day-humidity">[Second Day's Forecast Humidity]</div></li>
+                        </ul>
+                    </div>
+
+                    <!-- Container for the third day's forecasted weather -->
+                    <div id="third-day-forecast" class="col-lg-5 col-md-12 rounded">
+                        <ul>
+                            <h5 id="third-day-date">[Third Day's Forecast Date]</h5>
+                            <div id="third-day-icon">[Third Day's Forecast Icon]</div>
+                            <li><div id="third-day-temperature">[Third Day's Forecast Temperature]</div></li>
+                            <li><div id="third-day-wind">[Third Day's Forecast Wind]</div></li>
+                            <li><div id="third-day-humidity">[Third Day's Forecast Humidity]</div></li>
+                        </ul>
+                    </div>
+
+                    <!-- Container for the forth day's forecasted weather -->
+                    <div id="forth-day-forecast" class="col-lg-5 col-md-12 rounded">
+                        <ul>
+                            <h5 id="forth-day-date">[Forth Day's Forecast Date]</h5>
+                            <div id="forth-day-icon">[Forth Day's Forecast Icon]</div>
+                            <li><div id="forth-day-temperature">[Forth Day's Forecast Temperature]</div></li>
+                            <li><div id="forth-day-wind">[Forth Day's Forecast Wind]</div></li>
+                            <li><div id="forth-day-humidity">[Forth Day's Forecast Humidity]</div></li>
+                        </ul>
+                    </div>
+
+                    <!-- Container for the fifth day's forecasted weather -->
+                    <div id="fifth-day-forecast" class="col-lg-5 col-md-12 rounded">
+                        <ul>
+                            <h5 id="fifth-day-date">[Fifth Day's Forecast Date]</h5>
+                            <div id="fifth-day-icon">[Fifth Day's Forecast Icon]</div>
+                            <li><div id="fifth-day-temperature">[Fifth Day's Forecast Temperature]</div></li>
+                            <li><div id="fifth-day-wind">[Fifth Day's Forecast Wind]</div></li>
+                            <li><div id="fifth-day-humidity">[Fifth Day's Forecast Humidity]</div></li>
+                        </ul>
+                    </div>
+
+                    <!-- Container for the sixth day's forecasted weather -->
+                    <div id="sixth-day-forecast" class="col-lg-5 col-md-12 rounded">
+                        <ul>
+                            <h5 id="sixth-day-date">[Sixth Day's Forecast Date]</h5>
+                            <div id="sixth-day-icon">[Sixth Day's Forecast Icon]</div>
+                            <li><div id="sixth-day-temperature">[Sixth Day's Forecast Temperature]</div></li>
+                            <li><div id="sixth-day-wind">[Sixth Day's Forecast Wind]</div></li>
+                            <li><div id="sixth-day-humidity">[Sixth Day's Forecast Humidity]</div></li>
+                        </ul>
+                    </div>                
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
     
+    <!-- Loading the Bootstrap script -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!-- Loading the Luxon script -->
     <script src="https://cdn.jsdelivr.net/npm/luxon@1.27.0/build/global/luxon.min.js"></script>
+    <!-- Loading the application's script -->
     <script src="./assets/js/script.js"></script>
 </body>
 </html>
