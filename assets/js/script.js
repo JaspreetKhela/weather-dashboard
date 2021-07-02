@@ -124,8 +124,28 @@ function fetchWeatherData(city) {
     fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + currentLatitude + "&lon=" + currentLongitude + "&exclude=hourly,daily&appid=" + apiKey)
     .then(response => response.json())
     .then(data => {
-        // Display the current uv index
+        // Display the current UV Index
         currentUVIndex.innerHTML = "Current UV Index".bold() + ": " + data.current.uvi;
+
+        // Change the color of the UV Index
+        // Low UV Index
+        if (data.current.uvi <= 3){
+            currentUVIndex.classList.remove("yellow");
+            currentUVIndex.classList.remove("red");
+            currentUVIndex.classList.add("green");
+        }
+        // Moderate UV Index
+        if ((data.current.uvi > 3) && (data.current.uvi <= 6)) {
+            currentUVIndex.classList.remove("green");
+            currentUVIndex.classList.remove("red");
+            currentUVIndex.classList.add("yellow");
+        }
+        // High UV Index
+        if (data.current.uvi > 6) {
+            currentUVIndex.classList.remove("green");
+            currentUVIndex.classList.remove("yellow");
+            currentUVIndex.classList.add("red");
+        }
 
         // Saving the data from this fetch in localStorage
         var data2 = data;
@@ -248,6 +268,26 @@ function load() {
 
         // Display the current uv index
         currentUVIndex.innerHTML = "Current UV Index".bold() + ": " + data2.current.uvi;
+
+        // Change the color of the UV Index
+        // Low UV Index
+        if (data2.current.uvi <= 3) {
+            currentUVIndex.classList.remove("yellow");
+            currentUVIndex.classList.remove("red");
+            currentUVIndex.classList.add("green");
+        }
+        // Moderate UV Index
+        if ((data2.current.uvi > 3) && (data2.current.uvi <= 6)) {
+            currentUVIndex.classList.remove("green");
+            currentUVIndex.classList.remove("red");
+            currentUVIndex.classList.add("yellow");
+        }
+        // High UV Index
+        if (data2.current.uvi > 6) {
+            currentUVIndex.classList.remove("green");
+            currentUVIndex.classList.remove("yellow");
+            currentUVIndex.classList.add("red");
+        }
 
         // Display the current weather icon
         var iconValue = data3.list[0].weather[0].icon;

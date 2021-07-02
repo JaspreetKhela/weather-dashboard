@@ -111,6 +111,21 @@ ul {
     border-style: solid;
 }
 
+/* Low UV Index styling */
+.green {
+    color: lightgreen;
+}
+
+/* Moderate UV Index styling */
+.yellow {
+    color: lightyellow;
+}
+
+/* High UV Index styling */
+.red {
+    color: orangered;
+}
+
 /* Forecasted weather container's styling */
 #forecasted-weather {
     border-style: solid;
