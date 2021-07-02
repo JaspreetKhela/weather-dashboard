@@ -9,4 +9,4 @@
 **Repository URL**: https://github.com/JaspreetKhela/weather-dashboard
 
 **Screenshots**:
-Screen Shot 2021-07-02 at 4.53.32 AM (2)![Screen Shot 2021-07-02 at 4 53 32 AM (2)](https://user-images.githubusercontent.com/80941606/124249089-88154180-daf1-11eb-9cac-8e0518452a46.png)
+Screen Shot 2021-07-02 at 4.54.32 AM (2)![Screen Shot 2021-07-02 at 4 54 32 AM (2)](https://user-images.githubusercontent.com/80941606/124249207-a67b3d00-daf1-11eb-8982-200c3120868b.png)
