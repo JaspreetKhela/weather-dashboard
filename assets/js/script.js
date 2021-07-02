@@ -415,8 +415,8 @@ form.addEventListener('submit', function(event) {
         // Console logging either 200 for a successful request or 404 for an unsuccessful request
         console.log("Code: ", data.cod);
 
-        // If the API request was unsuccessful, then alert the user that an invalid city name was entered
-        if (data.cod == 404) {
+        // If the input value is empty or the API request was unsuccessful, then alert the user that an invalid city name was entered
+        if ((searchValue == "") || (data.cod == 404)) {
             window.alert("'" + searchValue + "'" + " is not a valid city. Please try again.");
         }
         // If the API was succuessful, then fetch the weather data for the searched for city
